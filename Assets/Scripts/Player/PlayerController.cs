@@ -9,15 +9,23 @@ public class PlayerController : MonoBehaviour
     public float followTargetSpeed = 1f;
 
     [Header("Compare Tags")]
-    public string EnemyTag = "Enemy";
+    public string enemyTag = "Enemy";
+    public string finishTag = "WinLine";
+    [Header("finish Interface")]
+    public GameObject restartScreen;
+    public GameObject winScreen;
+    public GameObject loseScreen;
 
     private float _posX;
     private bool _canRun;
 
     private void Start()
     {
-        StartGame();
+        restartScreen.SetActive(false);
+        winScreen.SetActive(false);
+        loseScreen.SetActive(false);
     }
+
 
     void Update()
     {
@@ -30,20 +38,31 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.CompareTag(EnemyTag))
+        if (collision.transform.CompareTag(enemyTag))
         {
-            EndGame();
+            EndGame(false);
         }
     }
 
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.transform.CompareTag(finishTag))
+        {
+            EndGame(true);
+        }
+    }
 
-    private void StartGame()
+    public void StartGame()
     {
         _canRun = true;
     }
 
-    private void EndGame()
+    private void EndGame(bool victory)
     {
         _canRun = false;
+
+        restartScreen.SetActive(true);
+        if (victory) winScreen.SetActive(true);
+        else loseScreen.SetActive(true);
     }
 }
