@@ -1,12 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
-    public float fwdSpeed = 5f;
+    public float fwdSpeed = 9f;
     public Transform target;
     public float followTargetSpeed = 1f;
+    [Header("Animation")]
+    public AnimationManager animationManager;
+    private float _baseSpeedToAnimation = 9f;
 
     [Header("Compare Tags")]
     public string enemyTag = "Enemy";
@@ -40,6 +44,8 @@ public class PlayerController : MonoBehaviour
     {
         if (collision.transform.CompareTag(enemyTag))
         {
+            collision.transform.DOMoveZ(1f, .5f).SetRelative();
+            animationManager.Play(AnimationType.DIE);
             EndGame(false);
         }
     }
@@ -48,13 +54,25 @@ public class PlayerController : MonoBehaviour
     {
         if (other.transform.CompareTag(finishTag))
         {
+            animationManager.Play(AnimationType.IDLE);
             EndGame(true);
         }
+    }
+    private void CalculateRunSpeed()
+    {
+        animationManager.Play(AnimationType.RUN, fwdSpeed / _baseSpeedToAnimation);
+    }
+
+    public void ChangeSpeed(float value)
+    {
+        fwdSpeed = value;
+        CalculateRunSpeed();
     }
 
     public void StartGame()
     {
         _canRun = true;
+        CalculateRunSpeed();
     }
 
     private void EndGame(bool victory)

@@ -40,7 +40,7 @@ MonoBehaviour:
     speed: 1
   - type: 2
     trigger: dead
-    speed: 1
+    speed: 2
 --- !u!1001 &4613086030138626190
 PrefabInstance:
   m_ObjectHideFlags: 0

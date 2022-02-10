@@ -51,11 +51,11 @@ public class PlayerPowerUpManager : Singleton<PlayerPowerUpManager>
 
     public static void ChangeSpeed(float amount)
     {
-        Instance.player.fwdSpeed = amount;
+        Instance.player.ChangeSpeed(amount);
     }
     public static void ResetSpeed()
     {
-        Instance.player.fwdSpeed = Instance._initialSpeed;
+        Instance.player.ChangeSpeed(Instance._initialSpeed);
     }
 
     #endregion
