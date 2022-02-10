@@ -13,6 +13,6 @@ public class PowerUpHeight : PowerUpBase
     }
     protected override void EndPowerUp()
     {
-        PlayerPowerUpManager.PlusHeight(0);
+        PlayerPowerUpManager.ResetHeight();
     }
 }

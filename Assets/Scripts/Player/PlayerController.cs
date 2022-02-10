@@ -58,7 +58,7 @@ public class PlayerController : MonoBehaviour
             EndGame(true);
         }
     }
-    private void CalculateRunSpeed()
+    public void CalculateRunSpeed()
     {
         animationManager.Play(AnimationType.RUN, fwdSpeed / _baseSpeedToAnimation);
     }

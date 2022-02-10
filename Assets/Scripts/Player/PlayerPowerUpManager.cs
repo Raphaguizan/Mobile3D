@@ -21,6 +21,7 @@ public class PlayerPowerUpManager : Singleton<PlayerPowerUpManager>
     {
         return Instance.transform.position;
     }
+
     #endregion
 
     #region Height
@@ -32,6 +33,12 @@ public class PlayerPowerUpManager : Singleton<PlayerPowerUpManager>
     public static void PlusHeight(float valueAmount)
     {
         Instance.transform.DOMoveY(Instance._initialPos.y + valueAmount, Instance.animationDuration).SetEase(Instance.animationEase);
+        Instance.player.animationManager.Play(AnimationType.FLY);
+    }
+    public static void ResetHeight()
+    {
+        Instance.transform.DOMoveY(Instance._initialPos.y, Instance.animationDuration).SetEase(Instance.animationEase);
+        Instance.player.animationManager.Play(AnimationType.RUN);
     }
     #endregion
 

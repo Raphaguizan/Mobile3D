@@ -6,7 +6,8 @@ public enum AnimationType
 {
     IDLE,
     RUN,
-    DIE
+    DIE,
+    FLY
 }
 
 [RequireComponent(typeof(Animator))]
