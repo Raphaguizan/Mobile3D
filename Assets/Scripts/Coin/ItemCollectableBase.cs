@@ -28,11 +28,15 @@ public class ItemCollectableBase : MonoBehaviour
     protected virtual void Collect()
     {
         OnCollet();
+        DisableObj();
+    }
+
+    protected virtual void DisableObj()
+    {
         Image.SetActive(false);
         _collisionBox.enabled = false;
         Destroy(gameObject, timeToDestroy);
     }
-
 
     protected virtual void OnCollet(){}
 }

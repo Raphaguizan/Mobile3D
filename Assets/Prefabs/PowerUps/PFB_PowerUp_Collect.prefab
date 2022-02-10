@@ -156,5 +156,5 @@ MonoBehaviour:
   playerTag: Player
   timeToDestroy: 3
   Image: {fileID: 3715858162826641234}
-  duration: 3
-  sizetAmount: 7
+  duration: 5
+  sizetAmount: 10

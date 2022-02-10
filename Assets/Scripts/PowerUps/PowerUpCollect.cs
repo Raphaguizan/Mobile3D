@@ -9,12 +9,10 @@ public class PowerUpCollect : PowerUpBase
     protected override void StartPowerUp()
     {
         base.StartPowerUp();
-        Debug.Log("iniciou powerup");
         PlayerPowerUpManager.ChangeCollectSize(sizetAmount);
     }
     protected override void EndPowerUp()
     {
-        Debug.Log("terminou powerup");
-        PlayerPowerUpManager.PlusHeight(1);
+        PlayerPowerUpManager.ChangeCollectSize(1);
     }
 }

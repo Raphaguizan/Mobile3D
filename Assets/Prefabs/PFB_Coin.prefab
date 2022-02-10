@@ -90,8 +90,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5611154931771959131}
-  - component: {fileID: 5611154931771959124}
   - component: {fileID: 5611154931771959125}
+  - component: {fileID: 128696806014170126}
   m_Layer: 0
   m_Name: PFB_Coin
   m_TagString: Untagged
@@ -114,22 +114,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &5611154931771959124
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5611154931771959130}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e75a76d2f151c54f8454e4c05fe7a78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerTag: CollectCollider
-  timeToDestroy: 3
-  Image: {fileID: 5611154930750953140}
-  collisionBox: {fileID: 5611154931771959125}
 --- !u!135 &5611154931771959125
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -143,3 +127,20 @@ SphereCollider:
   serializedVersion: 2
   m_Radius: 0.68
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &128696806014170126
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5611154931771959130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feff96b677c8a9d44a60cf7a0c8bb5cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerTag: CollectCollider
+  timeToDestroy: 0
+  Image: {fileID: 5611154930750953140}
+  animationSpeed: 9
+  minDist: 1
