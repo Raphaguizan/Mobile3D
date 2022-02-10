@@ -7,10 +7,19 @@ using DG.Tweening;
 public class PlayerPowerUpManager : Singleton<PlayerPowerUpManager>
 {
     #region SetUp
+    [Header("Setup")]
+    public PlayerController player;
+
     private Vector3 _initialPos;
     private void Start()
     {
         _initialPos = transform.position;
+        _initialSpeed = player.fwdSpeed;
+    }
+
+    public static Vector3 GetPos()
+    {
+        return Instance.transform.position;
     }
     #endregion
 
@@ -32,7 +41,21 @@ public class PlayerPowerUpManager : Singleton<PlayerPowerUpManager>
 
     public static void ChangeCollectSize(float amount)
     {
-        Instance.CollectCollider.transform.localScale = Instance.CollectCollider.transform.localScale * amount;
+        Instance.CollectCollider.transform.localScale = Vector3.one * amount;
+    }
+
+    #endregion
+
+    #region Speed
+    private float _initialSpeed;
+
+    public static void ChangeSpeed(float amount)
+    {
+        Instance.player.fwdSpeed = amount;
+    }
+    public static void ResetSpeed()
+    {
+        Instance.player.fwdSpeed = Instance._initialSpeed;
     }
 
     #endregion

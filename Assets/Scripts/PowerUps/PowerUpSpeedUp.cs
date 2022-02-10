@@ -2,17 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PowerUpHeight : PowerUpBase
+public class PowerUpSpeedUp : PowerUpBase
 {
-    [Header("Height")]
-    public float heightAmount = 3;
+    [Header("Speed")]
+    public float SpeedAmount = 18f;
     protected override void StartPowerUp()
     {
         base.StartPowerUp();
-        PlayerPowerUpManager.PlusHeight(heightAmount);
+        PlayerPowerUpManager.ChangeSpeed(SpeedAmount);
     }
     protected override void EndPowerUp()
     {
-        PlayerPowerUpManager.PlusHeight(0);
+        PlayerPowerUpManager.ResetSpeed();
     }
 }
