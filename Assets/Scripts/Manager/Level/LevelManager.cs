@@ -5,62 +5,57 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     public Transform container;
-    
-    [Header("pieces config")]
-    public int startPiecesNumber;
-    public List<GameObject> startPieces;
-    [Space]
-    public int middlePiecesNumber;
-    public List<GameObject> middlePieces;
-    [Space]
-    public int endPiecesNumber;
-    public List<GameObject> endPieces;
+    public Material skyBoxMaterial;
+    public List<LevelBase> levels;
+    public float constructDelay = .01f;
 
-    private LevelPiece _currentPiece;
-    private List<LevelPiece> _PiecesUsed = new List<LevelPiece>();
+    private LevelBase _currentLevel;
+    private int levelCount = 0;
 
     private void Start()
     {
         CreateLevel();
     }
-    private void CleanPieces()
+
+    [ContextMenu("Pass Level")]
+    public void PassLevel()
     {
-        for (int i = _PiecesUsed.Count -1; i >= 0 ; i--)
-        {
-            Destroy(_PiecesUsed[i]);
-        }
-        _PiecesUsed.Clear();
+        levelCount++;
+        if (levelCount >= levels.Count)
+            levelCount = 0;
+        CreateLevel();
     }
 
     public void CreateLevel()
     {
-        CleanPieces();
-        for (int i = 0; i < startPiecesNumber; i++)
-        {
-            GeneretaPiece(startPieces);
-        }
-        for (int i = 0; i < middlePiecesNumber; i++)
-        {
-            GeneretaPiece(middlePieces);
-        }
-        for (int i = 0; i < endPiecesNumber; i++)
-        {
-            GeneretaPiece(endPieces);
-        }
+        if (_currentLevel) _currentLevel.CleanPieces();
+        _currentLevel = levels[levelCount];
+        ChangeSkyColor(_currentLevel.colorType);
+        StartCoroutine(DelayToContruct());
     }
 
-    public void GeneretaPiece(List<GameObject> list)
+    private void ChangeSkyColor(ColorSetUp color)
     {
-        var piece = list[Random.Range(0, list.Count)];
+        skyBoxMaterial.SetColor("_SkyTint", color.skyBoxSkyColor);
+        skyBoxMaterial.SetColor("_GroundColor", color.skyBoxFloorColor);
+    }
 
-        if (!_currentPiece)
+
+    IEnumerator DelayToContruct()
+    {
+        for (int i = 0; i < _currentLevel.StartPiecesNumber; i++)
         {
-            _currentPiece = Instantiate(piece, container).GetComponent<LevelPiece>();
+            _currentLevel.GenerateStartPiece(container);
         }
-        else
+        for (int i = 0; i < _currentLevel.MiddlePiecesNumber; i++)
         {
-            _currentPiece = Instantiate(piece, _currentPiece.EndPoint).GetComponent<LevelPiece>();
+            yield return new WaitForSeconds(constructDelay);
+            _currentLevel.GenerateMiddlePiece(container);
         }
-        _currentPiece.transform.localPosition = Vector3.zero;
+        for (int i = 0; i < _currentLevel.EndPiecesNumber; i++)
+        {
+            yield return new WaitForSeconds(constructDelay);
+            _currentLevel.GenerateFinalPiece(container);
+        }
     }
 }

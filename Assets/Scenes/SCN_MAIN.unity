@@ -5764,17 +5764,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   container: {fileID: 298929639}
-  startPiecesNumber: 2
-  startPieces:
-  - {fileID: 5887507022362425743, guid: 91f37cc97e350a34198782b0757fe401, type: 3}
-  middlePiecesNumber: 10
-  middlePieces:
-  - {fileID: 127027217320078634, guid: edf86f77a610f68448d554a477f200a8, type: 3}
-  - {fileID: 1764764317961402719, guid: 1e169bd4f5b66f24a8d7125d9e893b92, type: 3}
-  - {fileID: 5887507022362425743, guid: 91f37cc97e350a34198782b0757fe401, type: 3}
-  endPiecesNumber: 1
-  endPieces:
-  - {fileID: 5357063978824284106, guid: 5c83bf3645175b34dbe47838eb0360a4, type: 3}
+  skyBoxMaterial: {fileID: 2100000, guid: 263163c5eb0510d439b48646f6475e42, type: 2}
+  levels:
+  - {fileID: 11400000, guid: d4faf595c803063469356d43af3f2d63, type: 2}
+  - {fileID: 11400000, guid: 1291580bef7aeda45a3f346506fb27ae, type: 2}
+  - {fileID: 11400000, guid: be237590cb97a314f8fc336340a02722, type: 2}
+  - {fileID: 11400000, guid: 3114c9c0fb2974d44aa4f202eb15f3e7, type: 2}
+  constructDelay: 0.01
 --- !u!1001 &1819719314
 PrefabInstance:
   m_ObjectHideFlags: 0
