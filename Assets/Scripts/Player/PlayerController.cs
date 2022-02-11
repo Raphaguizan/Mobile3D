@@ -18,7 +18,9 @@ public class PlayerController : MonoBehaviour
     [Header("finish Interface")]
     public GameObject restartScreen;
     public GameObject winScreen;
+    public GameObject winButton;
     public GameObject loseScreen;
+    public GameObject loseButton;
 
     private float _posX;
     private bool _canRun;
@@ -28,6 +30,8 @@ public class PlayerController : MonoBehaviour
         restartScreen.SetActive(false);
         winScreen.SetActive(false);
         loseScreen.SetActive(false);
+        loseButton.SetActive(false);
+        winButton.SetActive(false);
     }
 
 
@@ -72,7 +76,16 @@ public class PlayerController : MonoBehaviour
     public void StartGame()
     {
         _canRun = true;
+
+        LoadGame();
         CalculateRunSpeed();
+    }
+
+    public void LoadGame()
+    {
+        Vector3 restarPos = Vector3.zero;
+        restarPos.y = .5f;
+        transform.position = restarPos;
     }
 
     private void EndGame(bool victory)
@@ -80,7 +93,19 @@ public class PlayerController : MonoBehaviour
         _canRun = false;
 
         restartScreen.SetActive(true);
-        if (victory) winScreen.SetActive(true);
-        else loseScreen.SetActive(true);
+        if (victory)
+        {
+            loseScreen.SetActive(false);
+            loseButton.SetActive(false);
+            winScreen.SetActive(true);
+            winButton.SetActive(true);
+        }
+        else
+        {
+            winScreen.SetActive(false);
+            winButton.SetActive(false);
+            loseScreen.SetActive(true);
+            loseButton.SetActive(true);
+        }
     }
 }

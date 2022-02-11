@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89eabc8534e30bf4899b25dff35b64fd, type: 3}
   m_Name: Level_2
   m_EditorClassIdentifier: 
-  colorType: {fileID: 11400000, guid: 4434c3ed15077634d8c5d159fd7a709e, type: 2}
-  artType: {fileID: 11400000, guid: d36096088d8c528499b715687abe1135, type: 2}
+  colorType: {fileID: 11400000, guid: 0a93387e33340f946a260d3de9de2086, type: 2}
+  artType: {fileID: 11400000, guid: 72fe81fad30e7894bac015ba9e0996c0, type: 2}
   startPiecesNumber: 2
   startPieces:
   - {fileID: 7754493399886966570, guid: 91f37cc97e350a34198782b0757fe401, type: 3}
