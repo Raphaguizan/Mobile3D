@@ -17,7 +17,7 @@ MonoBehaviour:
   startPiecesNumber: 2
   startPieces:
   - {fileID: 7754493399886966570, guid: 91f37cc97e350a34198782b0757fe401, type: 3}
-  middlePiecesNumber: 20
+  middlePiecesNumber: 10
   middlePieces:
   - {fileID: 4317426250364976015, guid: edf86f77a610f68448d554a477f200a8, type: 3}
   - {fileID: 2473722028092796922, guid: 1e169bd4f5b66f24a8d7125d9e893b92, type: 3}

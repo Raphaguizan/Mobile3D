@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
         CreateLevel();
     }
 
+    // Pode passar o level durante o jogo pelo contex menu (os tres pontinhos do componente) no inspector.
     [ContextMenu("Pass Level")]
     public void PassLevel()
     {
@@ -31,6 +32,7 @@ public class LevelManager : MonoBehaviour
         if (_currentLevel) _currentLevel.CleanPieces();
         _currentLevel = levels[levelCount];
         ChangeSkyColor(_currentLevel.colorType);
+
         StartCoroutine(DelayToContruct());
     }
 
