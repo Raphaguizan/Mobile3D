@@ -1,9 +1,14 @@
 using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Game.Util;
+using DG.Tweening;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : Singleton<LevelManager>
 {
+    public static Action PassLevelCallback;
+
     public Transform container;
     public Material skyBoxMaterial;
     public List<LevelBase> levels;
@@ -24,6 +29,7 @@ public class LevelManager : MonoBehaviour
         levelCount++;
         if (levelCount >= levels.Count)
             levelCount = 0;
+        PassLevelCallback.Invoke();
         CreateLevel();
     }
 
@@ -38,8 +44,25 @@ public class LevelManager : MonoBehaviour
 
     private void ChangeSkyColor(ColorSetUp color)
     {
-        skyBoxMaterial.SetColor("_SkyTint", color.skyBoxSkyColor);
-        skyBoxMaterial.SetColor("_GroundColor", color.skyBoxFloorColor);
+        StartCoroutine(SkySmoothColorChange(color));
+    }
+
+    IEnumerator SkySmoothColorChange(ColorSetUp color)
+    {
+        float lerpColor = 0;
+        Color CurrentSkyColor = skyBoxMaterial.GetColor("_SkyTint");
+        Color CurrentFloorColor = skyBoxMaterial.GetColor("_GroundColor");
+
+        while (lerpColor < 1)
+        {
+            Color skyLerp = Color.Lerp(CurrentSkyColor, color.skyBoxSkyColor, lerpColor);
+            Color floorLerp = Color.Lerp(CurrentFloorColor, color.skyBoxFloorColor, lerpColor);
+
+            lerpColor += Time.deltaTime;
+            skyBoxMaterial.SetColor("_SkyTint", skyLerp);
+            skyBoxMaterial.SetColor("_GroundColor", floorLerp);
+            yield return null;
+        }
     }
 
 

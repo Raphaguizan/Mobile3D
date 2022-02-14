@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -7,6 +8,8 @@ public class PowerUpBase : ItemCollectableBase
     [Header("PowerUp")]
     public float duration = 3f;
 
+    public static Action PowerUpCollected;
+
     private void Start()
     {
         timeToDestroy = duration + 1;
@@ -14,6 +17,7 @@ public class PowerUpBase : ItemCollectableBase
 
     protected override void OnCollet()
     {
+        PowerUpCollected?.Invoke();
         StartPowerUp();
     }
 

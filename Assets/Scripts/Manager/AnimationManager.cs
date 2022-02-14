@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public enum AnimationType
 {
@@ -21,6 +22,16 @@ public class AnimationManager : MonoBehaviour
         anim = GetComponent<Animator>();
     }
 
+    private void OnEnable()
+    {
+        PowerUpBase.PowerUpCollected += PlayPowerUpTween;
+    }
+
+    private void OnDisable()
+    {
+        PowerUpBase.PowerUpCollected -= PlayPowerUpTween;
+    }
+
     public void Play(AnimationType type, float speedFactor = 1f)
     {
         animations.ForEach(i => { 
@@ -31,6 +42,23 @@ public class AnimationManager : MonoBehaviour
             } 
         });
     }
+    #region tween
+    [Header("Tween Animations")]
+    public TweenAnimationSetup startTween;
+    public TweenAnimationSetup PowerUpTween;
+
+    public void PlayStartTween()
+    {
+        transform.localScale = Vector3.zero;
+        transform.DOScale(Vector3.one, startTween.duration).SetEase(startTween.ease);
+    }
+
+    [ContextMenu("Powerup Animation")]
+    public void PlayPowerUpTween()
+    {
+        transform.DOScale( 1.1f, PowerUpTween.duration).SetEase(PowerUpTween.ease).SetLoops(2, LoopType.Yoyo);
+    }
+    #endregion
 }
 
 [System.Serializable]
@@ -39,4 +67,11 @@ public class AnimationSetup
     public AnimationType type;
     public string trigger;
     public float speed = 1f;
+}
+
+[System.Serializable]
+public class TweenAnimationSetup
+{
+    public float duration = 1f;
+    public Ease ease = Ease.OutBack;
 }

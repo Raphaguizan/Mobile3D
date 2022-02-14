@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public string enemyTag = "Enemy";
     public string finishTag = "WinLine";
     [Header("finish Interface")]
+    public GameObject startScreen;
     public GameObject restartScreen;
     public GameObject winScreen;
     public GameObject winButton;
@@ -25,8 +26,18 @@ public class PlayerController : MonoBehaviour
     private float _posX;
     private bool _canRun;
 
+    private void OnEnable()
+    {
+        LevelManager.PassLevelCallback += LoadGame;
+    }
+    private void OnDisable()
+    {
+        LevelManager.PassLevelCallback -= LoadGame;
+    }
+
     private void Start()
     {
+        LoadGame();
         restartScreen.SetActive(false);
         winScreen.SetActive(false);
         loseScreen.SetActive(false);
@@ -76,16 +87,22 @@ public class PlayerController : MonoBehaviour
     public void StartGame()
     {
         _canRun = true;
-
-        LoadGame();
         CalculateRunSpeed();
     }
 
     public void LoadGame()
     {
+        _canRun = false;
+        animationManager.Play(AnimationType.IDLE);
+
         Vector3 restarPos = Vector3.zero;
         restarPos.y = .5f;
         transform.position = restarPos;
+
+        animationManager.PlayStartTween();
+
+        restartScreen.SetActive(false);
+        startScreen.SetActive(true);
     }
 
     private void EndGame(bool victory)

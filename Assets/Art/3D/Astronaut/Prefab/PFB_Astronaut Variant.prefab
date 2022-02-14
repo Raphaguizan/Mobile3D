@@ -44,6 +44,12 @@ MonoBehaviour:
   - type: 3
     trigger: fly
     speed: 2.5
+  startTween:
+    duration: 2
+    ease: 27
+  PowerUpTween:
+    duration: 0.1
+    ease: 30
 --- !u!1001 &4613086030138626190
 PrefabInstance:
   m_ObjectHideFlags: 0
