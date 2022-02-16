@@ -759,8 +759,8 @@ TrailRenderer:
       m_RotationOrder: 4
     colorGradient:
       serializedVersion: 2
-      key0: {r: 0, g: 0.541559, b: 1, a: 0.3764706}
-      key1: {r: 0, g: 0.541559, b: 1, a: 0.99078727}
+      key0: {r: 1, g: 1, b: 1, a: 0.3764706}
+      key1: {r: 1, g: 1, b: 1, a: 0.99078727}
       key2: {r: 1.25, g: 0.56, b: 0.12, a: 0}
       key3: {r: 3.5, g: 2, b: 0.5, a: 0}
       key4: {r: 4, g: 3.5, b: 1.2, a: 0}
@@ -776,7 +776,7 @@ TrailRenderer:
       ctime6: 0
       ctime7: 0
       atime0: 0
-      atime1: 24150
+      atime1: 16905
       atime2: 65535
       atime3: 65535
       atime4: 0

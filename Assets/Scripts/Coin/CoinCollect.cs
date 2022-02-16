@@ -7,6 +7,8 @@ public class CoinCollect : ItemCollectableBase
 {
     public float animationSpeed = 1f;
     public float minDist = 1f;
+
+    public ParticleSystem particles;
     protected override void Collect()
     {
         OnCollet();
@@ -20,6 +22,7 @@ public class CoinCollect : ItemCollectableBase
             yield return null;
             transform.position = Vector3.Lerp(transform.position, PlayerPowerUpManager.GetPos(), animationSpeed * Time.deltaTime);
         }
+        particles.Play();
         DisableObj();
     }
 }
