@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 5611154931771959131}
   - component: {fileID: 5611154931771959125}
   - component: {fileID: 128696806014170126}
+  - component: {fileID: 2607606852703655939}
   m_Layer: 0
   m_Name: PFB_Coin
   m_TagString: Untagged
@@ -144,3 +145,22 @@ MonoBehaviour:
   Image: {fileID: 5611154930750953140}
   animationSpeed: 9
   minDist: 1
+--- !u!95 &2607606852703655939
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5611154931771959130}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: ce9159a78462e3e439bef8887e584b68, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
