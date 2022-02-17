@@ -70,6 +70,10 @@ public class PlayerController : MonoBehaviour
         if (other.transform.CompareTag(finishTag))
         {
             animationManager.Play(AnimationType.IDLE);
+            Debug.Log(other.name);
+            ParticleSystem aux =  other.GetComponentInChildren<ParticleSystem>();
+            if (aux) aux.Play();
+
             EndGame(true);
         }
     }
